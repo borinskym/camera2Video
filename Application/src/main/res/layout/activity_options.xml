@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.camera2video.OptionsActivity">
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:id="@+id/radioGroup">
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choose size of video :"
+            />
+
+        <RadioButton
+            android:id="@+id/quality_selector_1_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="864*480"
+
+            />
+
+        <RadioButton
+        android:id="@+id/quality_selector_2_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dip"
+        android:text="640*480" />
+
+    <RadioButton
+        android:id="@+id/quality_selector_3_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dip"
+        android:text="480*360" />
+
+
+    <RadioButton
+        android:id="@+id/quality_selector_4_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dip"
+        android:text="320*240" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_toRightOf="@id/radioGroup"
+        android:layout_marginLeft="20dip"
+        android:id="@+id/fpsRadioGroup">
+
+        <TextView
+            android:id="@+id/headerFps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choose fps :"
+            />
+
+
+        <RadioButton
+            android:id="@+id/fps_selector_1_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="10"
+
+            />
+
+        <RadioButton
+            android:id="@+id/fps_selector_2_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="20" />
+
+        <RadioButton
+            android:id="@+id/fps_selector_3_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="30" />
+
+
+        <RadioButton
+            android:id="@+id/fps_selector_4_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="40" />
+
+        <RadioButton
+            android:id="@+id/fps_selector_5_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="50" />
+
+        <RadioButton
+            android:id="@+id/fps_selector_6_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="60" />
+
+    </RadioGroup>
+
+
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_toRightOf="@id/fpsRadioGroup"
+        android:layout_marginLeft="20dip"
+        android:id="@+id/bitrateRadioGroup">
+
+
+        <TextView
+            android:id="@+id/headerBitrate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choose bitrate :"
+            />
+
+        <RadioButton
+            android:id="@+id/bitrate_selector_1_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="1000000"
+
+            />
+
+        <RadioButton
+            android:id="@+id/bitrate_selector_2_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="2000000" />
+
+        <RadioButton
+            android:id="@+id/bitrate_selector_3_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="3000000" />
+
+
+        <RadioButton
+            android:id="@+id/bitrate_selector_4_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="4000000" />
+
+        <RadioButton
+            android:id="@+id/bitrate_selector_5_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="5000000" />
+
+        <RadioButton
+            android:id="@+id/bitrate_selector_6_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="6000000" />
+
+        <RadioButton
+            android:id="@+id/bitrate_selector_7_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="7000000" />
+
+        <RadioButton
+            android:id="@+id/bitrate_selector_8_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="8000000" />
+
+        <RadioButton
+            android:id="@+id/bitrate_selector_9_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="9000000" />
+
+        <RadioButton
+            android:id="@+id/bitrate_selector_10_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dip"
+            android:text="10000000" />
+
+    </RadioGroup>
+
+
+</RelativeLayout >

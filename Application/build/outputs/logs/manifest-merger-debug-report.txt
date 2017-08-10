@@ -1,0 +1,107 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:16:1-44:12
+	package
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:17:5-47
+	android:versionName
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:19:5-30
+		INJECTED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml
+		INJECTED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml
+	android:versionCode
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:18:5-28
+		INJECTED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml
+		INJECTED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:16:11-69
+uses-permission#android.permission.CAMERA
+ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:23:5-65
+	android:name
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:23:22-62
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:24:5-71
+	android:name
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:24:22-68
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:25:5-81
+	android:name
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:25:22-78
+application
+ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:27:5-42:19
+MERGED from [com.android.support:support-v13:25.3.1] /home/michael/.android/build-cache/f73635f5da979966df61f1564ae72cd1ecbf5cf7/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:cardview-v7:25.3.1] /home/michael/.android/build-cache/2582792edec512c91e8a8d50d6c45c0ba0ae8b76/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/michael/.android/build-cache/1526e1125e29a03d1596d831b7c098c614766410/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /home/michael/.android/build-cache/9cab862e67d6f96c12338e3b82cd1f06e9123f22/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /home/michael/.android/build-cache/6beb5dbb4a8af3c3229f8e8bbd9404bc1f3d44ab/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/michael/.android/build-cache/d63dcd9eb4c840c8d4bf2a417acc72434bbce181/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/michael/.android/build-cache/b54a3eb8a982458ad69de3e31a87181866cee482/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/michael/.android/build-cache/d63002dd25dfcc88450839b78a37e31c289e8338/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/michael/.android/build-cache/9b7888f9023e771092f2ca14ae4977c05b131578/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/michael/.android/build-cache/8bf08e66e14a5171c451e855aa4034dc052c788e/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /home/michael/.android/build-cache/8633b2138599a33b448b1b73a0e6bed5e4a9be86/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/michael/.android/build-cache/677506538fc9e8fd223b58788b7b41cd7988823b/output/AndroidManifest.xml:9:5-20
+	android:label
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:30:9-41
+	android:allowBackup
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:28:9-35
+	android:icon
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:29:9-45
+	android:theme
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:31:9-45
+activity#com.example.android.camera2video.CameraActivity
+ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:32:9-40:20
+	android:label
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:34:13-45
+	android:name
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:33:13-43
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:35:13-39:29
+action#android.intent.action.MAIN
+ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:36:17-69
+	android:name
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:36:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:38:17-77
+	android:name
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:38:27-74
+activity#com.example.android.camera2video.OptionsActivity
+ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:41:9-62
+	android:name
+		ADDED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml:41:19-50
+uses-sdk
+INJECTED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:support-v13:25.3.1] /home/michael/.android/build-cache/f73635f5da979966df61f1564ae72cd1ecbf5cf7/output/AndroidManifest.xml:21:5-23:55
+MERGED from [com.android.support:cardview-v7:25.3.1] /home/michael/.android/build-cache/2582792edec512c91e8a8d50d6c45c0ba0ae8b76/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/michael/.android/build-cache/1526e1125e29a03d1596d831b7c098c614766410/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:25.3.1] /home/michael/.android/build-cache/9cab862e67d6f96c12338e3b82cd1f06e9123f22/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /home/michael/.android/build-cache/6beb5dbb4a8af3c3229f8e8bbd9404bc1f3d44ab/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/michael/.android/build-cache/d63dcd9eb4c840c8d4bf2a417acc72434bbce181/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/michael/.android/build-cache/b54a3eb8a982458ad69de3e31a87181866cee482/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/michael/.android/build-cache/d63002dd25dfcc88450839b78a37e31c289e8338/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/michael/.android/build-cache/9b7888f9023e771092f2ca14ae4977c05b131578/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/michael/.android/build-cache/8bf08e66e14a5171c451e855aa4034dc052c788e/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-compat:25.3.1] /home/michael/.android/build-cache/8633b2138599a33b448b1b73a0e6bed5e4a9be86/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/michael/.android/build-cache/677506538fc9e8fd223b58788b7b41cd7988823b/output/AndroidManifest.xml:5:5-7:41
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v13:25.3.1] /home/michael/.android/build-cache/f73635f5da979966df61f1564ae72cd1ecbf5cf7/output/AndroidManifest.xml:23:9-52
+	android:targetSdkVersion
+		INJECTED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml
+		INJECTED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml
+		INJECTED from /home/michael/Dev/android-Camera2Video/Application/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v13:25.3.1] /home/michael/.android/build-cache/f73635f5da979966df61f1564ae72cd1ecbf5cf7/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:cardview-v7:25.3.1] /home/michael/.android/build-cache/2582792edec512c91e8a8d50d6c45c0ba0ae8b76/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] /home/michael/.android/build-cache/1526e1125e29a03d1596d831b7c098c614766410/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-v4:25.3.1] /home/michael/.android/build-cache/9cab862e67d6f96c12338e3b82cd1f06e9123f22/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /home/michael/.android/build-cache/6beb5dbb4a8af3c3229f8e8bbd9404bc1f3d44ab/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /home/michael/.android/build-cache/d63dcd9eb4c840c8d4bf2a417acc72434bbce181/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /home/michael/.android/build-cache/b54a3eb8a982458ad69de3e31a87181866cee482/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /home/michael/.android/build-cache/d63002dd25dfcc88450839b78a37e31c289e8338/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /home/michael/.android/build-cache/9b7888f9023e771092f2ca14ae4977c05b131578/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /home/michael/.android/build-cache/8bf08e66e14a5171c451e855aa4034dc052c788e/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-compat:25.3.1] /home/michael/.android/build-cache/8633b2138599a33b448b1b73a0e6bed5e4a9be86/output/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:support-v13:25.3.1] /home/michael/.android/build-cache/f73635f5da979966df61f1564ae72cd1ecbf5cf7/output/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:support-v13:25.3.1] /home/michael/.android/build-cache/f73635f5da979966df61f1564ae72cd1ecbf5cf7/output/AndroidManifest.xml:26:9-47

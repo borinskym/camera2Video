@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/michael/Dev/android-Camera2Video/Application/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/home/michael/.android/build-cache/1526e1125e29a03d1596d831b7c098c614766410/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/home/michael/Dev/android-Camera2Video/Application/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/home/michael/.android/build-cache/1526e1125e29a03d1596d831b7c098c614766410/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/michael/Dev/android-Camera2Video/Application/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/home/michael/.android/build-cache/1526e1125e29a03d1596d831b7c098c614766410/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/michael/Dev/android-Camera2Video/Application/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/home/michael/.android/build-cache/1526e1125e29a03d1596d831b7c098c614766410/output/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/home/michael/Dev/android-Camera2Video/Application/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/home/michael/.android/build-cache/1526e1125e29a03d1596d831b7c098c614766410/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/home/michael/Dev/android-Camera2Video/Application/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/home/michael/.android/build-cache/1526e1125e29a03d1596d831b7c098c614766410/output/res/layout-v21/notification_template_icon_group.xml"
+    }
+]

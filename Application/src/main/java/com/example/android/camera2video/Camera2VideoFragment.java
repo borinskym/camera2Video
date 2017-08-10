@@ -24,6 +24,9 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Matrix;
@@ -41,6 +44,8 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.SystemClock;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v13.app.FragmentCompat;
 import android.support.v4.app.ActivityCompat;
@@ -53,16 +58,26 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Camera2VideoFragment extends Fragment
         implements View.OnClickListener, FragmentCompat.OnRequestPermissionsResultCallback {
@@ -95,6 +110,8 @@ public class Camera2VideoFragment extends Fragment
         INVERSE_ORIENTATIONS.append(Surface.ROTATION_270, 0);
     }
 
+    private final Context activityContex;
+
     /**
      * An {@link AutoFitTextureView} for camera preview.
      */
@@ -106,12 +123,12 @@ public class Camera2VideoFragment extends Fragment
     private Button mButtonVideo;
 
     /**
-     * A reference to the opened {@link android.hardware.camera2.CameraDevice}.
+     * A reference to the opened {@link CameraDevice}.
      */
     private CameraDevice mCameraDevice;
 
     /**
-     * A reference to the current {@link android.hardware.camera2.CameraCaptureSession} for
+     * A reference to the current {@link CameraCaptureSession} for
      * preview.
      */
     private CameraCaptureSession mPreviewSession;
@@ -147,12 +164,12 @@ public class Camera2VideoFragment extends Fragment
     };
 
     /**
-     * The {@link android.util.Size} of camera preview.
+     * The {@link Size} of camera preview.
      */
     private Size mPreviewSize;
 
     /**
-     * The {@link android.util.Size} of video recording.
+     * The {@link Size} of video recording.
      */
     private Size mVideoSize;
 
@@ -176,10 +193,41 @@ public class Camera2VideoFragment extends Fragment
      */
     private Handler mBackgroundHandler;
 
+
+    Handler customHanlder = new Handler();
     /**
      * A {@link Semaphore} to prevent the app from exiting before closing the camera.
      */
     private Semaphore mCameraOpenCloseLock = new Semaphore(1);
+
+    private volatile boolean timerRunning = true;
+
+    View view;
+
+    TextView timerVal;
+
+    Runnable updateTimerThread = new Runnable() {
+        @Override
+        public void run() {
+            timeinMillisecods = SystemClock.uptimeMillis() - startTime;
+            updateTime = timeSwapBuff + timeinMillisecods;
+            int secs = (int)(updateTime / 1000);
+            int mins = secs/60;
+            secs%=60;
+            int milliseconds = (int)(updateTime%1000);
+
+            timerVal.setText("" + mins + String.format("%2d", secs) + ":" +
+            String.format("%3d", milliseconds));
+            if(timerRunning) {
+                customHanlder.postDelayed(this, 0);
+            }
+
+        }
+    };
+
+
+
+    long startTime=0L,timeinMillisecods=0L,timeSwapBuff=0L,updateTime=0L;
 
     /**
      * {@link CameraDevice.StateCallback} is called when {@link CameraDevice} changes its status.
@@ -219,8 +267,12 @@ public class Camera2VideoFragment extends Fragment
     private String mNextVideoAbsolutePath;
     private CaptureRequest.Builder mPreviewBuilder;
 
-    public static Camera2VideoFragment newInstance() {
-        return new Camera2VideoFragment();
+    public Camera2VideoFragment(Context activityContex) {
+        this.activityContex = activityContex;
+    }
+
+    public static Camera2VideoFragment newInstance(Context activityContex) {
+        return new Camera2VideoFragment(activityContex);
     }
 
     /**
@@ -282,13 +334,58 @@ public class Camera2VideoFragment extends Fragment
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
         mButtonVideo = (Button) view.findViewById(R.id.video);
+
         mButtonVideo.setOnClickListener(this);
-        view.findViewById(R.id.info).setOnClickListener(this);
+        //view.findViewById(R.id.info).setOnClickListener(this);
+
+        Button button = (Button) view.findViewById(R.id.settingsButton);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =  new Intent(activityContex, OptionsActivity.class);
+
+                startActivity(i);
+            }
+        });
+
+        this.view = view;
+
+        timerVal = (TextView) view.findViewById(R.id.timerVal);
+
+        Button resetTimerButton = (Button) view.findViewById(R.id.resetTimer);
+
+        resetTimerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timerVal.setText("0:00:000");
+                startTime=0L;
+                timeinMillisecods=0L;
+                timeSwapBuff=0L;
+                updateTime=0L;
+            }
+        });
+
+
+
+//        RadioGroup group = (RadioGroup) view.findViewById(R.id.quality_selector_radio_group);
+//        group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+//                closeCamera();
+//                openCamera(mTextureView.getWidth(), mTextureView.getHeight());
+//            }
+//        });
+
     }
+
+
 
     @Override
     public void onResume() {
         super.onResume();
+        //disable rotation
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         startBackgroundThread();
         if (mTextureView.isAvailable()) {
             openCamera(mTextureView.getWidth(), mTextureView.getHeight());
@@ -309,9 +406,37 @@ public class Camera2VideoFragment extends Fragment
         switch (view.getId()) {
             case R.id.video: {
                 if (mIsRecordingVideo) {
+                    timerRunning = false;
                     stopRecordingVideo();
                 } else {
-                    startRecordingVideo();
+
+
+                    this.startTime = SystemClock.uptimeMillis();
+
+                    timerRunning = true;
+
+                    customHanlder.postDelayed(updateTimerThread, 0);
+
+
+                    //Size sz = selectVideoSizeFromRadioButton();
+
+                    SharedPreferences prefs = activityContex.getSharedPreferences("appPrefs", MODE_PRIVATE);
+
+                    String res = prefs.getString("resolution", null);
+
+                    Size sz = parseSize(res);
+
+                    int fps = prefs.getInt("fps", 0);
+
+                    int bitRate = prefs.getInt("bitrate", 0);
+
+                    Toast.makeText(getActivity(), "the marked resolution is : "  + res
+                            + ", the bit rate : " + bitRate +
+                            "and the fps : " + fps
+                            , Toast.LENGTH_SHORT).show();
+
+
+                    startRecordingVideo(bitRate, sz, fps);
                 }
                 break;
             }
@@ -438,9 +563,13 @@ public class Camera2VideoFragment extends Fragment
             if (map == null) {
                 throw new RuntimeException("Cannot get available preview/video sizes");
             }
+
+          //  mVideoSize = new Size(640, 360);
             mVideoSize = chooseVideoSize(map.getOutputSizes(MediaRecorder.class));
             mPreviewSize = chooseOptimalSize(map.getOutputSizes(SurfaceTexture.class),
                     width, height, mVideoSize);
+
+          //  mPreviewSize = new Size(864, 480);
 
             int orientation = getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -449,10 +578,10 @@ public class Camera2VideoFragment extends Fragment
                 mTextureView.setAspectRatio(mPreviewSize.getHeight(), mPreviewSize.getWidth());
             }
             configureTransform(width, height);
-            mMediaRecorder = new MediaRecorder();
+
             manager.openCamera(cameraId, mStateCallback, null);
         } catch (CameraAccessException e) {
-            Toast.makeText(activity, "Cannot access the camera.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Cannot access the camera", Toast.LENGTH_SHORT).show();
             activity.finish();
         } catch (NullPointerException e) {
             // Currently an NPE is thrown when the Camera2API is used but not supported on the
@@ -462,6 +591,17 @@ public class Camera2VideoFragment extends Fragment
         } catch (InterruptedException e) {
             throw new RuntimeException("Interrupted while trying to lock camera opening.");
         }
+    }
+
+    private Size parseSize(String text) {
+
+        int indexOfDelimiter = text.indexOf("*");
+
+        int width = Integer.parseInt(text.substring(0, indexOfDelimiter));
+
+        int height = Integer.parseInt(text.substring(indexOfDelimiter + 1));
+
+        return new Size(width, height);
     }
 
     private void closeCamera() {
@@ -544,7 +684,7 @@ public class Camera2VideoFragment extends Fragment
     }
 
     /**
-     * Configures the necessary {@link android.graphics.Matrix} transformation to `mTextureView`.
+     * Configures the necessary {@link Matrix} transformation to `mTextureView`.
      * This method should not to be called until the camera preview size is determined in
      * openCamera, or until the size of `mTextureView` is fixed.
      *
@@ -574,11 +714,13 @@ public class Camera2VideoFragment extends Fragment
         mTextureView.setTransform(matrix);
     }
 
-    private void setUpMediaRecorder() throws IOException {
+    private boolean setUpMediaRecorder(int bitrate, Size sz, int fps) throws IOException {
         final Activity activity = getActivity();
         if (null == activity) {
-            return;
+            return false;
         }
+
+        mMediaRecorder = new MediaRecorder();
         mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
         mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
@@ -586,9 +728,11 @@ public class Camera2VideoFragment extends Fragment
             mNextVideoAbsolutePath = getVideoFilePath(getActivity());
         }
         mMediaRecorder.setOutputFile(mNextVideoAbsolutePath);
-        mMediaRecorder.setVideoEncodingBitRate(10000000);
-        mMediaRecorder.setVideoFrameRate(30);
-        mMediaRecorder.setVideoSize(mVideoSize.getWidth(), mVideoSize.getHeight());
+        mMediaRecorder.setVideoEncodingBitRate(bitrate);
+
+
+        mMediaRecorder.setVideoFrameRate(fps);
+        mMediaRecorder.setVideoSize(sz.getWidth(), sz.getHeight());
         mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
         mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         int rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
@@ -601,6 +745,7 @@ public class Camera2VideoFragment extends Fragment
                 break;
         }
         mMediaRecorder.prepare();
+        return true;
     }
 
     private String getVideoFilePath(Context context) {
@@ -609,13 +754,15 @@ public class Camera2VideoFragment extends Fragment
                 + System.currentTimeMillis() + ".mp4";
     }
 
-    private void startRecordingVideo() {
+    private void startRecordingVideo(int bitRate, Size sz, int fps) {
         if (null == mCameraDevice || !mTextureView.isAvailable() || null == mPreviewSize) {
             return;
         }
         try {
             closePreviewSession();
-            setUpMediaRecorder();
+
+            setUpMediaRecorder(bitRate, sz, fps);
+
             SurfaceTexture texture = mTextureView.getSurfaceTexture();
             assert texture != null;
             texture.setDefaultBufferSize(mPreviewSize.getWidth(), mPreviewSize.getHeight());
@@ -646,7 +793,6 @@ public class Camera2VideoFragment extends Fragment
                             // UI
                             mButtonVideo.setText(R.string.stop);
                             mIsRecordingVideo = true;
-
                             // Start recording
                             mMediaRecorder.start();
                         }
@@ -676,7 +822,9 @@ public class Camera2VideoFragment extends Fragment
 
     private void stopRecordingVideo() {
         // UI
-        mIsRecordingVideo = false;
+
+        startPreview();
+
         mButtonVideo.setText(R.string.record);
         // Stop recording
         mMediaRecorder.stop();
@@ -688,8 +836,9 @@ public class Camera2VideoFragment extends Fragment
                     Toast.LENGTH_SHORT).show();
             Log.d(TAG, "Video saved: " + mNextVideoAbsolutePath);
         }
+
+        mIsRecordingVideo = false;
         mNextVideoAbsolutePath = null;
-        startPreview();
     }
 
     /**
@@ -759,5 +908,6 @@ public class Camera2VideoFragment extends Fragment
         }
 
     }
+
 
 }

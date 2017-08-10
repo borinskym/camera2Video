@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/michael/Dev/android-Camera2Video/Application/build/intermediates/res/merged/debug/drawable-hdpi/tile.9.png",
+        "source": "/home/michael/Dev/android-Camera2Video/Application/src/main/res/drawable-hdpi/tile.9.png"
+    },
+    {
+        "merged": "/home/michael/Dev/android-Camera2Video/Application/build/intermediates/res/merged/debug/drawable-hdpi/ic_action_info.png",
+        "source": "/home/michael/Dev/android-Camera2Video/Application/src/main/res/drawable-hdpi/ic_action_info.png"
+    },
+    {
+        "merged": "/home/michael/Dev/android-Camera2Video/Application/build/intermediates/res/merged/debug/drawable-hdpi/ic_launcher.png",
+        "source": "/home/michael/Dev/android-Camera2Video/Application/src/main/res/drawable-hdpi/ic_launcher.png"
+    }
+]
